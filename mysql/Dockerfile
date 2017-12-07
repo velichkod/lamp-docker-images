@@ -1,3 +1,3 @@
 FROM mysql:5.7
-COPY ./mysld.cnf /etc/mysql/mysql.conf.d
+COPY ./mysqld.cnf /etc/mysql/mysql.conf.d
 COPY ./mysqltuner.pl /root/
