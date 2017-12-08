@@ -18,7 +18,7 @@ services:
     image: {php_image}
     container_name: www-service
     volumes:
-      - ./trunk/docroot:/var/www/html
+      - ./www_data:/var/www/html
     ports:
       - "8080:80"
     environment:
