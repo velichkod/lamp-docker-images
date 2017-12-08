@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  db:
+    image: {mysql_image}
+    container_name: db-service
+    environment:
+      MYSQL_ROOT_PASSWORD: "{mysql_root_password}"
+      MYSQL_DATABASE: "{mysql_database}"
+      MYSQL_USER: "{mysql_user}"
+      MYSQL_PASSWORD: "{mysql_password}"
+    volumes:
+      - ./db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  www:
+    image: {php_image}
+    container_name: www-service
+    volumes:
+      - ./trunk/docroot:/var/www/html
+    ports:
+      - "8080:80"
+    environment:
+      VIRTUAL_HOST: {virtual_host}
+      VIRTUAL_PORT: "80"
+
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy-service
+    depends_on:
+      - db
+      - www
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
