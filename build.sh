@@ -23,10 +23,10 @@ cp ./docker-compose-template.yml ./docker-compose.yml
 
 
 sed -i -e 's@{mysql_image}@'"${docker_mysql_image_tag}"'@g' ./docker-compose.yml
-sed -i -e "s@{mysql_root_password}@${mysql_image}@g" ./docker-compose.yml
-sed -i -e "s@{mysql_database}@${mysql_image}@g" ./docker-compose.yml
-sed -i -e "s@{mysql_user}@${mysql_image}@g" ./docker-compose.yml
-sed -i -e "s@{mysql_password}@${mysql_image}@g" ./docker-compose.yml
+sed -i -e "s@{mysql_root_password}@${mysql_root_password}@g" ./docker-compose.yml
+sed -i -e "s@{mysql_database}@${mysql_database}@g" ./docker-compose.yml
+sed -i -e "s@{mysql_user}@${mysql_user}@g" ./docker-compose.yml
+sed -i -e "s@{mysql_password}@${mysql_password}@g" ./docker-compose.yml
 sed -i -e "s@{php_image}@${docker_php_image_tag}@g" ./docker-compose.yml
 sed -i -e "s@{project_prefix}@${docker_project_prefix}@g" ./docker-compose.yml
 sed -i -e "s@{virtual_host}@${docker_virtual_host}@g" ./docker-compose.yml
